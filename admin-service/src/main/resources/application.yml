@@ -1,0 +1,41 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: admin-service
+
+  cloud:
+    zookeeper:
+      discovery:
+        root: /spring-cloud-service
+      connect-string: 192.168.186.1:2181
+      dependencies:
+        user-service:
+          required: true
+          path: /user-service
+          loadBalancerType: ROUND_ROBIN
+
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    mode: HTML5
+
+  cache:
+    cache-names: userCache
+
+  redis:
+    database: 0
+    host: 192.168.186.1
+    port: 6379
+    timeout: 5000
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 4
+      max-wait: 4
+    password: 123456
+
+management:
+  security:
+    enabled: false

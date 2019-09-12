@@ -1,0 +1,57 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: user-service
+
+  cloud:
+    zookeeper:
+      discovery:
+        root: /spring-cloud-service
+#        instance-host: 192.168.186.1
+      connect-string: 192.168.186.1:2181
+
+  datasource:
+    url: jdbc:mysql://192.168.186.1:33306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+    username: system
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 5
+      max-total: 25
+      max-idle: 10
+      min-idle: 5
+      max-wait-millis: 10000
+      validation-query: SELECT 1
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+  cache:
+    cache-names: userCache
+
+  redis:
+    database: 0
+    host: 192.168.186.1
+    port: 6379
+    timeout: 5000
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 4
+      max-wait: 4
+    password: 123456
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.net5ijy.springcloud.admin.user.repository: trace
+#  file: D:/tmp/logs/spring-cloud-user-service.out
