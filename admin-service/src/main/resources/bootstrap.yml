@@ -1,0 +1,38 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: admin-service
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        group: net5ijy_sprindcloud_admindemo_group
+        prefix: ${spring.application.name}
+        file-extension: yml
+      discovery:
+        server-addr: localhost:8848
+  profiles:
+    active: dev
+
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    mode: HTML5
+
+  cache:
+    cache-names: userCache
+
+  redis:
+    database: 0
+    host: redis-server1
+    port: 6379
+    timeout: 5000ms
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 4
+        max-wait: 4s
+    password: 123456

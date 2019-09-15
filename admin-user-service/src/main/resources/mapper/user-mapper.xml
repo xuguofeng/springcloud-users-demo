@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.net5ijy.springcloud.admindemo.user.repository.UserRepository">
+
+  <resultMap type="User" id="UserResultMap">
+    <result column="id" property="id" jdbcType="INTEGER" javaType="int"/>
+    <result column="username" property="username" jdbcType="VARCHAR"
+      javaType="string"/>
+    <result column="password" property="password" jdbcType="VARCHAR"
+      javaType="string"/>
+    <result column="phone" property="phone" jdbcType="VARCHAR"
+      javaType="string"/>
+    <result column="email" property="email" jdbcType="VARCHAR"
+      javaType="string"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"
+      javaType="java.util.Date"/>
+    <collection property="roles" select="selectRolesByUserId"
+      column="id"/>
+  </resultMap>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="User">
+		<![CDATA[
+    insert into springcloud_user
+    (username, password, phone, email, create_time)
+    values
+      (#{username}, #{password}, #{phone}, #{email}, #{createTime})
+    ]]>
+	</insert>
+
+  <update id="update" parameterType="User">
+		<![CDATA[
+    update springcloud_user
+    set
+      username = #{username}, password = #{password}, phone = #{phone}, email = #{email}
+    where id = #{id}
+    ]]>
+	</update>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+		<![CDATA[
+    delete from springcloud_user
+    where id = #{id}
+    ]]>
+	</delete>
+
+  <select id="findOne" parameterType="java.lang.Integer" resultMap="UserResultMap">
+		<![CDATA[
+    select *
+    from springcloud_user
+    where id = #{id}
+    ]]>
+	</select>
+
+  <select id="findAll" resultMap="UserResultMap">
+		<![CDATA[
+    select *
+    from springcloud_user
+    ]]>
+	</select>
+
+  <select id="findByPage" resultMap="UserResultMap">
+		<![CDATA[
+    select *
+    from springcloud_user
+    ]]>
+	</select>
+
+  <select id="count" resultType="java.lang.Integer">
+		<![CDATA[
+    select count(*)
+    from springcloud_user
+    ]]>
+	</select>
+
+  <select id="findByUsername" parameterType="java.lang.String" resultMap="UserResultMap">
+		<![CDATA[
+    select *
+    from springcloud_user
+    where username = #{username}
+    ]]>
+	</select>
+
+  <!-- 根据user id查询用户拥有的role -->
+  <select id="selectRolesByUserId" parameterType="java.lang.Integer" resultType="Role">
+		<![CDATA[
+    select
+      r.id,
+      r.name
+    from springcloud_user_role ur, springcloud_role r
+    where ur.role_id = r.id and ur.user_id = #{id}
+    ]]>
+	</select>
+
+</mapper>

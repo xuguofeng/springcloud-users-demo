@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Spring Cloud Administrator</title>
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js" th:src="@{/js/lib/jquery-1.9.1.min.js}"></script>
+<script type="text/javascript" src="../../js/lib/bootstrap.min.js" th:src="@{/js/lib/bootstrap.min.js}"></script>
+<link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+<link href="../../css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+<link href="../../css/common.css" th:href="@{/css/common.css}" rel="stylesheet"/>
+<script type="text/javascript">
+$(function() {
+	var s = 5;
+	var ti = setInterval(function() {
+		s -= 1;
+		if(s == 0) {
+			window.clearInterval(ti);
+			history.go(-1);
+		}
+		$("#timmer").html(s);
+	}, 1000);
+});
+</script>
+</head>
+<body>
+<nav th:replace="include/header :: header"></nav>
+<div id="main" class="container">
+	<span><strong>Sorry</strong>, an unexpected error occurred on the server.</span> <a href="javascript:history.go(-1);">Go back</a> after <span id="timmer">5</span> seconds.
+</div>
+<footer class="blog-footer bg-inverse" data-th-fragment="footer">
+    <div class="container">
+ 		<p class="m-0 text-center text-white">© 2018 <a href="mailto:572399495@qq.com">572399495@qq.com</a></p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<nav xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" data-th-fragment="header" 
+      class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+	<div class="container">
+        <a class="navbar-brand" href="/user/list">用户管理系统</a>
+        <div sec:authorize="isAuthenticated()" class="row" >
+			<form th:action="@{/logout}" method="post" style="height: 100%;">
+				<input class="btn btn-success " type="submit" value=" 退 出 " 
+					style="margin-top: 8px;float: right;margin-right: 20px;" />
+			</form>
+		</div>
+    </div>
+</nav>

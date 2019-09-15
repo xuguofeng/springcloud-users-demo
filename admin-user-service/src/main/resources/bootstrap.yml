@@ -1,0 +1,51 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: admin-user-service
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        group: net5ijy_sprindcloud_admindemo_group
+        prefix: ${spring.application.name}
+        file-extension: yml
+      discovery:
+        server-addr: localhost:8848
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+    username: system
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 5
+      max-total: 25
+      max-idle: 10
+      min-idle: 5
+      max-wait-millis: 10000
+      validation-query: SELECT 1
+  profiles:
+    active: dev
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+  cache:
+    cache-names: userCache
+
+  redis:
+    database: 0
+    host: redis-server1
+    port: 6379
+    timeout: 5000ms
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 4
+        max-wait: 4s
+    password: 123456

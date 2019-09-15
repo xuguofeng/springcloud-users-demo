@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Spring Cloud Administrator</title>
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js" th:src="@{/js/lib/jquery-1.9.1.min.js}"></script>
+<script type="text/javascript" src="../../js/lib/bootstrap.min.js" th:src="@{/js/lib/bootstrap.min.js}"></script>
+<link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+<link href="../../css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+<link href="../../css/common.css" th:href="@{/css/common.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav th:replace="include/header :: header"></nav>
+<div id="main" class="container">
+	<span>Dear <strong th:text="${userModel.loggedinuser}"></strong>, You are not authorized to access this page.</span>
+</div>
+<footer class="blog-footer bg-inverse" data-th-fragment="footer">
+    <div class="container">
+ 		<p class="m-0 text-center text-white">© 2018 <a href="mailto:572399495@qq.com">572399495@qq.com</a></p>
+    </div>
+</footer>
+</body>
+</html>
