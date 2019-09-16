@@ -17,5 +17,6 @@ spring:
     active: dev
 
 turbine:
+  instanceUrlSuffix: hystrix.stream
   app-config: admin-service,admin-user-service
-  cluster-name-expression: "'DEFAULT'"
+  cluster-name-expression: "'default'"
