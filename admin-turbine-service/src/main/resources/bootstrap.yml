@@ -1,0 +1,21 @@
+server:
+  port: 8771
+
+spring:
+  application:
+    name: admin-turbine-service
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        group: net5ijy_sprindcloud_admindemo_group
+        prefix: ${spring.application.name}
+        file-extension: yml
+      discovery:
+        server-addr: localhost:8848
+  profiles:
+    active: dev
+
+turbine:
+  app-config: admin-service,admin-user-service
+  cluster-name-expression: "'DEFAULT'"
