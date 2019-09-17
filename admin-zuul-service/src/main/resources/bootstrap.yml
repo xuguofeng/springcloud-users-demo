@@ -1,0 +1,24 @@
+server:
+  port: 8781
+
+spring:
+  application:
+    name: admin-zuul-service
+
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        group: net5ijy_sprindcloud_admindemo_group
+        prefix: ${spring.application.name}
+        file-extension: yml
+      discovery:
+        server-addr: localhost:8848
+
+zuul:
+  ignored-services: new String('*')
+  routes:
+    admin-user-service: /users/**
+    admin-service: /admins/**
+  ignore-security-headers: false
+  sensitive-headers: sensitive
